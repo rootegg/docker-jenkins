@@ -165,7 +165,7 @@ cat initialAdminPassword
 ```
 > 4、点击安装推荐的插件按钮即可
 
-## 搭建自动化构建
+## 第七步：搭建自动化构建
 > 1、安装插件（nodejs、sonarqube scanner、Publish Over SSH） [图片](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
 ```code
 地址 http://192.168.162.129:10240/pluginManager/available
