@@ -246,11 +246,24 @@ tar –czf dist.tar.gz dist/*
 7、到项目myvue1点击立即构建
 遇到问题
 
-1、Unpacking https://nodejs.org/dist/v16.9.1/node-v16.9.1-linux-x64.tar.gz to /var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs16.9.1 on Jenkins
+1、解决Unpacking https://nodejs.org/dist/v16.9.1/node-v16.9.1-linux-x64.tar.gz to /var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs16.9.1 on Jenkins
 [图片](https://user-images.githubusercontent.com/82021554/134309505-354257b1-cb6f-4a19-ad0e-81d1ae23d2c0.png)
 ```code
 参考地址 https://blog.csdn.net/u012075238/article/details/103052201
 手动下载node-v16.9.1-linux-x64.tar.gz，上传/var/jenkins_home目录，执行 tar -xzvf node-v16.9.1-linux-x64.tar.gz，会生成/var/jenkins_home/node-v16.9.1-linux-x64目录
+```
+
+2、解决SSH: Transferred 0 file(s)
+```code
+参考地址 https://www.jianshu.com/p/ef6a4022b7b5
+Source files **/* 表示sskzmz这个job的工作目录下所有的文件和目录。
+Remove prefix 该操作是针对上面的source files目录，会移除匹配的目录。通常留空。
+Remote directory 该操作是基于设定的服务器目录进行。这里我的服务器配置是的/www. 因此这里应该写sites/sskzmz即可。
+Exec command 远程服务器执行的命令。例如可以输出 service nginx restart 或者/www/xx. sh 均可。
+
+重点一: source files 要基于任务的目录进行。不支持绝对路径。如果配置不对，则找不到文件。上例中/var/jenkins_home/workspace/sskzmz 是任务目录。最终jenkins会选择 /var/jenkins_home/workspace/sskzmz/**/* 查询所要传送的文件。
+
+重点二: Remote directory 要基于你远程服务器的目录配置。你远程服务器配置的基准是/www 。则最终的文件目录是 /www+ Remote directory的配置参数。不支持绝对路径。
 ```
 
 
