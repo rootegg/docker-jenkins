@@ -14,7 +14,7 @@ https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64
 ```code
 https://docs.docker.com/engine/install/centos/
 ```
-> Set up the repository
+> 1、Set up the repository
 ```code
 sudo yum install -y yum-utils
 sudo yum-config-manager \
@@ -37,7 +37,7 @@ Another app is currently holding the yum lock; waiting for it to exit...
 
 #rm -f /var/run/yum.pid
 ```
-> Install Docker Engine
+> 2、Install Docker Engine
 ```code
 sudo yum install docker-ce docker-ce-cli containerd.io
 ```
@@ -45,11 +45,11 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 ```code
 安装过程中，会询问是否继续安装某些工具，输入y回车就行
 ```
-> Start Docker
+> 3、Start Docker
 ```code
 sudo systemctl start docker
 ```
-> Test
+> 4、Test
 ```code
 sudo docker run hello-world
 ```
