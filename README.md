@@ -100,3 +100,21 @@ sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```code
 sudo gitlab-rake "gitlab:password:reset"
 ```
+
+## 第四步：nginx
+```code
+参考地址 https://www.runoob.com/docker/docker-install-nginx.html
+```
+> 安装
+```code
+subo docker run --name nginx -p 80:80 -d nginx
+```
+
+## 第五步：sonar
+```code
+参考地址 https://www.jianshu.com/p/e0883f347901
+```
+> 安装
+```code
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
+```
