@@ -205,5 +205,41 @@ Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publi
 新建空项目
 1、git源码配置
 [图片](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
+2、勾选构建环境 -> Add timestamps to the Console Output
+3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH
+[图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
+4、sonar信息配置
+构建 -> 新增Execute SonarQube Scanner
+```code
+#sonarqube服务器地址
+sonar.host.url=http://192.168.162.129:9000/
+#sonarqube token
+sonar.login=fc3486ae08da99f0735bfb241b888f68d736d55e
+#项目唯一标识
+sonar.projectKey=myvue1
+#项目名称
+sonar.projectName=myvue1
+#源代码目录
+sonar.sources=src
+#语言
+sonar.language=js
+#源代码文件编码
+sonar.sourceEncoding=UTF-8
+#忽略目录（非自身项目代码）
+# sonar.exclusions=src/components/**
+```
+[图片](https://user-images.githubusercontent.com/82021554/134303569-7c1e0b9b-8228-498d-a5e4-1c6ec0ad8377.png)
+5、node信息配置
+构建 -> 新增执行shell
+```code
+npm install --registry https://registry.npm.taobao.org/
+tar –czf dist.tar.gz dist/*
+```
+[图片](https://user-images.githubusercontent.com/82021554/134305192-a512ea0b-798c-403b-a90b-cd78bc1c8e00.png)
+6、SSH发送到nginx
+构建后操作 -> 新增Send build artifacts over SSH
+[图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
+
+
 
 
