@@ -95,3 +95,8 @@ sudo docker run --detach \
 ```code
 sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
+
+> 3、reset password
+```code
+sudo gitlab-rake "gitlab:password:reset"
+```
