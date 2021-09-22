@@ -148,4 +148,9 @@ cd /var/jenkins_mount/secrets/
 cat initialAdminPassword
 ```
 > 4、点击安装推荐的插件按钮即可
-> 5、
+
+> 5、安装node插件
+```code
+Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
+![image](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
+```
