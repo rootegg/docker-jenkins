@@ -12,7 +12,7 @@ https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64
 
 ### 一、docker 安装
 ```code
-https://docs.docker.com/engine/install/centos/
+参考地址 https://docs.docker.com/engine/install/centos/#install-using-the-repository
 ```
 > 1、Set up the repository
 ```code
@@ -76,7 +76,7 @@ docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_ho
 
 ## 第三步：gitlab
 ```code
-https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-engine
+参考地址 https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-engine
 ```
 > 1、Install GitLab using Docker Engine 社区版
 ```code
