@@ -1,6 +1,6 @@
 搭建docker、gitlab、sonar、jenkins、nginx、mysql、redis、rabbitmq过程
 
-## 1、centos
+## 第一步：centos7
 > VMware® Workstation
 
 > Centos 7
@@ -8,7 +8,7 @@
 https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso
 ```
 
-## 2、docker
+## 第二步：docker
 
 ### 一、docker 安装
 ```code
@@ -73,3 +73,24 @@ docker container cp [containID]:[/path/to/file]  /path/to/file 从正在运行�
 docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name myjenkins jenkins/jenkins 运行jenkins容器，如果没有回下载镜像再安装容器，-d 后台运行  -p 端口映射 -v 目录挂载 --name 设置容器名称
 ```
 
+
+## 第三步：gitlab
+```code
+https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-engine
+```
+> 1、Install GitLab using Docker Engine 社区版
+```code
+sudo docker run --detach \
+  --publish 44301:443 --publish 8001:80 --publish 2201:22 \
+  --name gitlab \
+  --restart always \
+  --volume $GITLAB_HOME/config:/etc/gitlab \
+  --volume $GITLAB_HOME/logs:/var/log/gitlab \
+  --volume $GITLAB_HOME/data:/var/opt/gitlab \
+  gitlab/gitlab-ce:latest
+  ```
+> 2、Visit the GitLab URL, and log in with username root and the password from the following command:
+注意：The password file will be automatically deleted in the first reconfigure run after 24 hours.
+```code
+sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+```
