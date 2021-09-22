@@ -149,7 +149,7 @@ cat initialAdminPassword
 ```
 > 4、点击安装推荐的插件按钮即可
 
-> 5、安装node插件
+> 5、安装插件（nodejs、sonarqube scanner、Publish Over SSH）
 ```code
 Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
 ```
