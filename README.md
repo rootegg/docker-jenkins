@@ -118,4 +118,4 @@ subo docker run --name nginx -p 80:80 -d nginx
 ```code
 docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
 ```
-注意 访问网址如192.168.162.129:9000 需要等待一段时间服务启动
+注意 初始账号admin密码admin  访问网址如192.168.162.129:9000 需要等待一段时间服务启动
