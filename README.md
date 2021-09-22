@@ -298,4 +298,9 @@ su root # 先切换到root用户, 再执行以下命令
 systemctl enable docker # 开机自动启动docker
 systemctl start docker # 启动docker
 
-
+4、虚拟机重启后 没有ip了
+执行 ifconfig 发现多了docker0，虚拟机保持NAT链接
+执行
+ifconfig docker0 down
+service network restart
+关闭虚拟机，重新启动，或许就好了
