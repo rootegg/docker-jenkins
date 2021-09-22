@@ -122,9 +122,24 @@ sudo docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p
 ```
 注意 初始账号admin密码admin  访问网址如192.168.162.129:9000 需要等待一段时间服务启动
 
-2、建一个token，后面jenkins用
+2、建一个项目，后面jenkins用
 ```code
-地址 http://192.168.162.129:9000/account/security/ 操作 Generate Tokens
+#sonarqube服务器地址
+sonar.host.url=http://192.168.162.129:9000/
+#sonarqube token
+sonar.login=fc3486ae08da99f0735bfb241b888f68d736d55e
+#项目唯一标识
+sonar.projectKey=myvue1
+#项目名称
+sonar.projectName=myvue1
+#源代码目录
+sonar.sources=src
+#语言
+sonar.language=js
+#源代码文件编码
+sonar.sourceEncoding=UTF-8
+#忽略目录（非自身项目代码）
+# sonar.exclusions=src/components/**
 ```
 
 ## 第六步：jenkins
