@@ -153,26 +153,26 @@ cat initialAdminPassword
 ```code
 地址 http://192.168.162.129:10240/pluginManager/available
 Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
-```
 ![image](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
+```
 
 > 6、全局配置node版本
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> nodejs
-```
 ![image](https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png)
+```
 
 > 7、配置sonar服务器
 ```code
 地址 http://192.168.162.129:10240/configure
 Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> SonarQube servers
-```
 ![image](https://user-images.githubusercontent.com/82021554/134292152-a8727dff-8696-407f-b427-2cb415f41119.png)
+```
 
 > 8、配置jenkins关联sonarqube scanner
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> SonarQube Scanner
-```
 ![image](https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png)
+```
