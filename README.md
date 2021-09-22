@@ -293,5 +293,9 @@ Exec command 远程服务器执行的命令。例如可以输出 service nginx r
 重点二: Remote directory 要基于你远程服务器的目录配置。你远程服务器配置的基准是/www 。则最终的文件目录是 /www+ Remote directory的配置参数。不支持绝对路径。
 ```
 
+3、虚拟机重启后 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?服务没开启
+su root # 先切换到root用户, 再执行以下命令
+systemctl enable docker # 开机自动启动docker
+systemctl start docker # 启动docker
 
 
