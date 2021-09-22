@@ -41,6 +41,10 @@ Another app is currently holding the yum lock; waiting for it to exit...
 ```code
 sudo yum install docker-ce docker-ce-cli containerd.io
 ```
+> 遇到问题
+```code
+安装过程中，会询问是否继续安装某些工具，输入y回车就行
+```
 > Start Docker
 ```code
 sudo systemctl start docker
