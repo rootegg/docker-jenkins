@@ -135,3 +135,8 @@ sudo mkdir -p /var/jenkins_mount
 sudo chmod 777 /var/jenkins_mount
 sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
 ```
+> 2、安装镜像加速
+```code
+修改文件 vi /var/jenkins_mount/hudson.model.UpdateCenter.xml
+将url改为 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+```
