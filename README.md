@@ -237,15 +237,29 @@ sonar.sourceEncoding=UTF-8
 ```code
 npm install --registry https://registry.npm.taobao.org/
 npm run build
-tar -cvf dist.tar dist
+cd dist
+tar -cvf dist.tar ./
 ```
 
 
-6、SSH发送到nginx [图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
+6、SSH发送到nginx 
+
+[图片1](https://user-images.githubusercontent.com/82021554/134343453-4346ab4f-c28f-4129-b475-796eb6f64417.png) 
+[图片2](https://user-images.githubusercontent.com/82021554/134343538-975a6f22-7820-41ce-88ea-dd5f79acd996.png)
+[图片3](https://user-images.githubusercontent.com/82021554/134343633-86215ac2-a814-42d1-b2f0-e3e88ece08ae.png)
+[图片4](https://user-images.githubusercontent.com/82021554/134343712-05291995-0e8b-43b3-b54b-788b6ec366ae.png)
+[图片5](https://user-images.githubusercontent.com/82021554/134343760-84b4ea81-8b4c-4a0a-865b-a0be4a9bd819.png)
+
+```code
 构建后操作 -> 新增Send build artifacts over SSH
-Source files填 dist.tar
+Source files填 dist/dist.tar
+Remove prefix填 dist/
 Remote directory填 ./
-Exec command填 tar -xvf dist.tar
+Exec command填 
+cd /home/nginx/www
+tar -xvf dist.tar
+rm -rf dist.tar
+```
 
 7、到项目myvue1点击立即构建
 遇到问题
