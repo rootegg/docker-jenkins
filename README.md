@@ -89,7 +89,7 @@ sudo docker run --detach \
   --volume $GITLAB_HOME/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
   ```
-> 2、Visit the GitLab URL, and log in with username root and the password from the following command:
+> 2、获取root初始密码
 
 注意：The password file will be automatically deleted in the first reconfigure run after 24 hours.
 ```code
