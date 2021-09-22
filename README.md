@@ -107,8 +107,8 @@ sudo gitlab-rake "gitlab:password:reset"
 ```
 > 安装
 ```code
-sudo mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
-sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -v /home/nginx/conf:/etc/nginx/ -v /home/nginx/logs:/var/log/nginx -d nginx
+sudo mkdir -p /home/nginx/www
+sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -d nginx
 ```
 访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
 
