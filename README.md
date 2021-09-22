@@ -147,4 +147,5 @@ sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenki
 cd /var/jenkins_mount/secrets/
 cat initialAdminPassword
 ```
-> 4、点击安装推荐的插件按钮
+> 4、点击安装推荐的插件按钮即可
+> 5、
