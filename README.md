@@ -207,11 +207,11 @@ Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publi
 
 
 2、勾选构建环境 -> Add timestamps to the Console Output
-3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH [图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
+3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH ，勾选就好了，其他不用动 [图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
 
 
 4、sonar信息配置 [图片](https://user-images.githubusercontent.com/82021554/134303569-7c1e0b9b-8228-498d-a5e4-1c6ec0ad8377.png)
-构建 -> 新增Execute SonarQube Scanner
+构建 -> 新增Execute SonarQube Scanner -> Analysis properties 其他不用填
 ```code
 #sonarqube服务器地址
 sonar.host.url=http://192.168.162.129:9000/
@@ -237,12 +237,15 @@ sonar.sourceEncoding=UTF-8
 ```code
 npm install --registry https://registry.npm.taobao.org/
 npm run build
-tar -czf dist.tar.gz dist
+tar -cvf dist.tar dist
 ```
 
 
 6、SSH发送到nginx [图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
 构建后操作 -> 新增Send build artifacts over SSH
+Source files填 dist.tar
+Remote directory填 ./
+Exec command填 tar -xvf dist.tar
 
 7、到项目myvue1点击立即构建
 遇到问题
