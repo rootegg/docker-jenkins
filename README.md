@@ -165,52 +165,51 @@ cat initialAdminPassword
 ```
 > 4、点击安装推荐的插件按钮即可
 
-> 5、安装插件（nodejs、sonarqube scanner、Publish Over SSH）
+> 5、安装插件（nodejs、sonarqube scanner、Publish Over SSH） [图片](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
 ```code
 地址 http://192.168.162.129:10240/pluginManager/available
 Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
 
-> 6、全局配置node版本
+> 6、全局配置node版本 [图片](https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png)
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> nodejs
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png)
 
-> 7、配置sonar服务器
+
+> 7、配置sonar服务器 [图片](https://user-images.githubusercontent.com/82021554/134292152-a8727dff-8696-407f-b427-2cb415f41119.png)
 ```code
 地址 http://192.168.162.129:10240/configure
 Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> SonarQube servers
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134292152-a8727dff-8696-407f-b427-2cb415f41119.png)
 
-> 8、配置jenkins关联sonarqube scanner
+
+> 8、配置jenkins关联sonarqube scanner [图片](https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png)
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> SonarQube Scanner
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png)
 
-> 9、配置SSH服务
+
+> 9、配置SSH服务 [图片](https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png)
 ```code
-地址 http://192.168.162.129:10240/configure
+地址 http://192.168.162.129:10240/configure 
 Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publish over SSH -> SSH Servers
 配置完点一下Test Configuration看通不通
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png)
+
 
 > 10、发布项目
 新建空项目
-1、git源码配置
-[图片](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
+1、git源码配置 [图片](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
+
 
 2、勾选构建环境 -> Add timestamps to the Console Output
-3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH
-[图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
+3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH [图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
 
-4、sonar信息配置
+
+4、sonar信息配置 [图片](https://user-images.githubusercontent.com/82021554/134303569-7c1e0b9b-8228-498d-a5e4-1c6ec0ad8377.png)
 构建 -> 新增Execute SonarQube Scanner
 ```code
 #sonarqube服务器地址
@@ -230,19 +229,19 @@ sonar.sourceEncoding=UTF-8
 #忽略目录（非自身项目代码）
 # sonar.exclusions=src/components/**
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134303569-7c1e0b9b-8228-498d-a5e4-1c6ec0ad8377.png)
 
-5、node信息配置
+
+5、node信息配置 [图片](https://user-images.githubusercontent.com/82021554/134305192-a512ea0b-798c-403b-a90b-cd78bc1c8e00.png)
 构建 -> 新增执行shell
 ```code
 npm install --registry https://registry.npm.taobao.org/
 tar –czf dist.tar.gz dist/*
 ```
-[图片](https://user-images.githubusercontent.com/82021554/134305192-a512ea0b-798c-403b-a90b-cd78bc1c8e00.png)
 
-6、SSH发送到nginx
+
+6、SSH发送到nginx [图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
 构建后操作 -> 新增Send build artifacts over SSH
-[图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
+
 
 
 
