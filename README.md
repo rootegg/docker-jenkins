@@ -107,7 +107,8 @@ sudo gitlab-rake "gitlab:password:reset"
 ```
 > 安装
 ```code
-subo docker run --name nginx -p 80:80 -d nginx
+sudo mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
+sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -v /home/nginx/conf:/etc/nginx/ -v /home/nginx/logs:/var/log/nginx -d nginx
 ```
 访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
 
@@ -175,4 +176,12 @@ Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Sonar
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> SonarQube Scanner
 图片 https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png
+```
+
+> 9、配置SSH服务
+```code
+地址 http://192.168.162.129:10240/configure
+Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publish over SSH -> SSH Servers
+图片 https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png
+配置完点一下Test Configuration看通不通
 ```
