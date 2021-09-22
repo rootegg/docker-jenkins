@@ -154,41 +154,41 @@ cat initialAdminPassword
 ```code
 地址 http://192.168.162.129:10240/pluginManager/available
 Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
-图片 https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png
+[图片](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
 ```
 
 > 6、全局配置node版本
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> nodejs
-图片 https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png
+[图片](https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png)
 ```
 
 > 7、配置sonar服务器
 ```code
 地址 http://192.168.162.129:10240/configure
 Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> SonarQube servers
-图片 https://user-images.githubusercontent.com/82021554/134292152-a8727dff-8696-407f-b427-2cb415f41119.png
+[图片](https://user-images.githubusercontent.com/82021554/134292152-a8727dff-8696-407f-b427-2cb415f41119.png)
 ```
 
 > 8、配置jenkins关联sonarqube scanner
 ```code
 地址 http://192.168.162.129:10240/configureTools/
 Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> SonarQube Scanner
-图片 https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png
+[图片](https://user-images.githubusercontent.com/82021554/134292300-7c301564-b594-4831-9e48-a2c854d9deba.png)
 ```
 
 > 9、配置SSH服务
 ```code
 地址 http://192.168.162.129:10240/configure
 Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publish over SSH -> SSH Servers
-图片 https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png
+[图片](https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png)
 配置完点一下Test Configuration看通不通
 ```
 
 > 10、发布项目
 新建空项目
 1、git源码配置
-![image](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
+[图片](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
 
 
