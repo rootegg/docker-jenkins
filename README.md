@@ -291,7 +291,6 @@ Exec command 远程服务器执行的命令。例如可以输出 service nginx r
 重点一: source files 要基于任务的目录进行。不支持绝对路径。如果配置不对，则找不到文件。上例中/var/jenkins_home/workspace/sskzmz 是任务目录。最终jenkins会选择 /var/jenkins_home/workspace/sskzmz/**/* 查询所要传送的文件。
 
 重点二: Remote directory 要基于你远程服务器的目录配置。你远程服务器配置的基准是/www 。则最终的文件目录是 /www+ Remote directory的配置参数。不支持绝对路径。
-```
 
 3、虚拟机重启后 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?服务没开启
 su root # 先切换到root用户, 再执行以下命令
@@ -304,3 +303,6 @@ systemctl start docker # 启动docker
 ifconfig docker0 down
 service network restart
 关闭虚拟机，重新启动，或许就好了
+
+
+```
