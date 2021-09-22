@@ -110,6 +110,7 @@ sudo gitlab-rake "gitlab:password:reset"
 sudo mkdir -p /home/nginx/www
 sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -d nginx
 ```
+挂载到/home/nginx/www目录的目的是，后面jenkins发布dist文件用ssh直接推到这个目录就行了
 访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
 
 ## 第五步：sonar
