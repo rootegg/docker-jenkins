@@ -109,6 +109,7 @@ sudo gitlab-rake "gitlab:password:reset"
 ```code
 subo docker run --name nginx -p 80:80 -d nginx
 ```
+访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
 
 ## 第五步：sonar
 ```code
@@ -140,3 +141,10 @@ sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenki
 修改文件 vi /var/jenkins_mount/hudson.model.UpdateCenter.xml
 将url改为 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 ```
+> 3、获取初始密码
+访问网站 http://192.168.162.129:10240/
+```code
+cd /var/jenkins_mount/secrets/
+cat initialAdminPassword
+```
+> 4、点击安装推荐的插件按钮
