@@ -70,7 +70,7 @@ docker container stop [containerID] 停止容器
 docker container restart [containerID] 重启容器
 docker container exec -it [containerID] /bin/bash  进入容器且启动shell
 docker container cp [containID]:[/path/to/file]  /path/to/file 从正在运行的 Docker 容器里面，将文件拷贝到本机，两路径可交换
-docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name myjenkins jenkins/jenkins 运行jenkins容器，如果没有回下载镜像再安装容器，-d 后台运行  -p 端口映射 -v 目录挂载 --name 设置容器名称
+docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_home:/var/jenkins_home -v /etc/localtime:/etc/localtime --name myjenkins jenkins/jenkins 运行jenkins容器，如果没有回下载镜像再安装容器，-d 后台运行  -p 端口映射 -v 目录挂载 --name 设置容器名称
 ```
 
 
@@ -243,7 +243,15 @@ tar –czf dist.tar.gz dist/*
 6、SSH发送到nginx [图片](https://user-images.githubusercontent.com/82021554/134305549-5f7add7d-5d67-41f5-a083-a5d95cdbe6b1.png)
 构建后操作 -> 新增Send build artifacts over SSH
 
+7、到项目myvue1点击立即构建
+遇到问题
+```code
+1、Unpacking https://nodejs.org/dist/v16.9.1/node-v16.9.1-linux-x64.tar.gz to /var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/nodejs16.9.1 on Jenkins
+参考地址 https://blog.csdn.net/u012075238/article/details/103052201
+手动下载node-v16.9.1-linux-x64.tar.gz，上传/var/jenkins_home目录，执行 tar -xzvf node-v16.9.1-linux-x64.tar.gz，会生成/var/jenkins_home/node-v16.9.1-linux-x64目录
+[图片](https://user-images.githubusercontent.com/82021554/134309505-354257b1-cb6f-4a19-ad0e-81d1ae23d2c0.png)
 
+```
 
 
 
