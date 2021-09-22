@@ -116,11 +116,19 @@ subo docker run --name nginx -p 80:80 -d nginx
 ```
 > 1、安装
 ```code
-docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
+sudo docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
 ```
 注意 初始账号admin密码admin  访问网址如192.168.162.129:9000 需要等待一段时间服务启动
 
 2、建一个token，后面jenkins用
 ```code
 地址 http://192.168.162.129:9000/account/security/ 操作 Generate Tokens
+```
+
+## 第六步：jenkins
+> 1、安装
+```code
+sudo mkdir -p /var/jenkins_mount
+sudo chmod 777 /var/jenkins_mount
+sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
 ```
