@@ -21,6 +21,22 @@ sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 ```
+> 遇到问题
+```code
+执行yum安装命令式报如下错误，解决办法通过强制关掉yum进程。
+
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Existing lock /var/run/yum.pid: another copy is running as pid 2922.
+Another app is currently holding the yum lock; waiting for it to exit...
+  The other application is: PackageKit
+    Memory :  52 M RSS (908 MB VSZ)
+    Started: Fri Sep 14 01:41:58 2018 - 01:58 ago
+    State  : Sleeping, pid: 2922
+
+实现方式如下，然后重新使用yum安装：
+
+#rm -f /var/run/yum.pid
+```
 > Install Docker Engine
 ```code
 sudo yum install docker-ce docker-ce-cli containerd.io
