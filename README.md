@@ -1,4 +1,9 @@
 搭建docker、gitlab、sonar、jenkins、nginx、mysql、redis、rabbitmq过程
+![image](https://user-images.githubusercontent.com/82021554/134346250-1c20b8ed-7e56-4756-b473-8d66f0b1fdc2.png)
+![image](https://user-images.githubusercontent.com/82021554/134346362-152818fd-97bb-440d-9a73-946897cc6521.png)
+![image](https://user-images.githubusercontent.com/82021554/134346445-a232019b-34b2-4a19-8fab-5b98812e3294.png)
+![image](https://user-images.githubusercontent.com/82021554/134346512-02258f37-42cd-46cc-be0f-7212e48bdd87.png)
+
 
 ## 第一步：centos7
 > VMware® Workstation
