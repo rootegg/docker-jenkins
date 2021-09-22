@@ -4,6 +4,9 @@
 > VMware® Workstation
 
 > Centos 7
+```code
+https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso
+```
 
 ## 2、docker
 
