@@ -128,6 +128,9 @@ sudo docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p
 ## 第六步：jenkins
 > 1、安装
 ```code
+参考地址 https://www.cnblogs.com/fuzongle/p/12834080.html
+```
+```code
 sudo mkdir -p /var/jenkins_mount
 sudo chmod 777 /var/jenkins_mount
 sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
