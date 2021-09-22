@@ -204,9 +204,11 @@ Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publi
 > 6、发布项目
 
 新建空项目
+```code
 1、git源码配置 [图片](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
 2、勾选构建环境 -> Add timestamps to the Console Output
 3、勾选构建环境 -> Provide Node & npm bin/ folder to PATH ，勾选就好了，其他不用动 [图片](https://user-images.githubusercontent.com/82021554/134303912-79d66c8a-bbc6-4168-ad25-9b4442fcbe94.png)
+```
 
 
 4、sonar信息配置 [图片](https://user-images.githubusercontent.com/82021554/134303569-7c1e0b9b-8228-498d-a5e4-1c6ec0ad8377.png)
