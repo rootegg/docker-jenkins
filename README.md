@@ -154,3 +154,10 @@ cat initialAdminPassword
 Manage Jenkins(管理jenkins) -> 插件管理 -> 可用插件 -> nodejs
 ```
 ![image](https://user-images.githubusercontent.com/82021554/134290759-5efed515-6e68-4d39-973a-f0763be56a88.png)
+
+> 6、全局配置node版本
+```code
+Manage Jenkins(管理jenkins) -> （global tool confirguation）全局工具配置 -> nodejs
+```
+![image](https://user-images.githubusercontent.com/82021554/134291123-bb9da92a-2694-4fbe-bf90-4c243de342d0.png)
+
