@@ -185,3 +185,10 @@ Manage Jenkins(管理jenkins) -> （confirguation system）配置系统 -> Publi
 图片 https://user-images.githubusercontent.com/82021554/134295272-b5712e84-ed13-400e-a0ba-e1a7ef744f73.png
 配置完点一下Test Configuration看通不通
 ```
+
+> 10、发布项目
+新建空项目
+1、git源码配置
+![image](https://user-images.githubusercontent.com/82021554/134295775-ebe28393-8d23-4c6e-b939-a4757a37ecc5.png)
+
+
