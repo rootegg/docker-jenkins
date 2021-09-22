@@ -236,7 +236,8 @@ sonar.sourceEncoding=UTF-8
 构建 -> 新增执行shell
 ```code
 npm install --registry https://registry.npm.taobao.org/
-tar –czf dist.tar.gz dist/*
+npm run build
+tar -czf dist.tar.gz dist
 ```
 
 
