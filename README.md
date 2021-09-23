@@ -113,7 +113,7 @@ sudo gitlab-rake "gitlab:password:reset"
 > 安装
 ```code
 sudo mkdir -p /home/nginx/www
-sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -d nginx
+sudo docker run --restart always --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -d nginx
 ```
 挂载到/home/nginx/www目录的目的是，后面jenkins发布dist文件用ssh直接推到这个目录就行了
 访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
@@ -124,7 +124,7 @@ sudo docker run --name nginx -p 80:80 -v /home/nginx/www:/usr/share/nginx/html -
 ```
 > 1、安装
 ```code
-sudo docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
+sudo docker run -d --restart always --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:8.9.2-community
 ```
 注意 初始账号admin密码admin  访问网址如192.168.162.129:9000 需要等待一段时间服务启动
 
@@ -156,7 +156,7 @@ sonar.sourceEncoding=UTF-8
 ```code
 sudo mkdir -p /var/jenkins_mount
 sudo chmod 777 /var/jenkins_mount
-sudo docker run -d -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
+sudo docker run -d --restart always -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
 ```
 > 2、安装镜像加速
 ```code
