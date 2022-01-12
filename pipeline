@@ -1,0 +1,340 @@
+#!groovy
+
+//library
+def PrintMes(value, color){
+    colors = [
+        'red': ">>>>>>>>>>>${value}>>>>>>>>>>>",
+        'blue': ">>>>>>>>>>>${value}>>>>>>>>>>>",
+        'green': ">>>>>>>>>>>${value}>>>>>>>>>>>",
+        'green1': ">>>>>>>>>>>${value}>>>>>>>>>>>"
+    ]
+    ansiColor('xterm') {
+        println(colors[color])
+    }
+}
+
+
+def Console(name, value) {
+  println("*****************${name} --> ${value}*****************")
+}
+
+
+
+SRC = "${DeploySiteId}".split("--")
+size = SRC.size()
+SRC = SRC[size-2]
+
+String str = "${SRC}"
+String str2 = str.replaceAll(" ", "")
+// String workspace = "/data/app/jenkins/workspace/${k8sNamespace}/${ProjectName}/${ProjectName}-${str2}"
+String workspace = "/data/app/jenkins/workspace/${k8sNamespace}/${ProjectName}/${ProjectName}"
+println(workspace)
+
+pipeline{
+    agent {
+      node {
+        label "master" // 指定运行节点的标签或者名称
+        customWorkspace "${workspace}" // 指定运行工作目录（可选）
+      }
+    }
+
+    parameters {
+      choice(name: 'node_version', choices: ['10.17.0', '12.22.8', '14.18.2'], description: '切换node版本')
+      choice(name: 'buildInit1', choices: ['no', 'yes'], description: '是否删除 package-lock.json')
+      choice(name: 'buildInit2', choices: ['no', 'yes'], description: '是否删除 node_modules')
+      choice(name: 'npm_cache', choices: ['no', 'yes'], description: '是否清除npm缓存 npm cache clean --force')
+      choice(name: 'npm_install', choices: ['yes','no','force'], description: '是否安装依赖 npm install, force为 --force参数')
+      extendedChoice(
+          name: 'GIT',
+          description: '请选择代码切换方式 Branch, Tab',
+          multiSelectDelimiter: ',',
+          quoteValue: false,
+          saveJSONParameterToFile: false,
+          type: 'PT_RADIO',
+          value: 'BRANCH,TAG',
+          defaultValue: 'BRANCH',
+      )
+      string(name: 'Input', description: '请输入分支或Tag名')
+      choice(name: 'k8sNamespace', choices: ['fat-s'], description: '')
+      extendedChoice(
+          name: 'ProjectName',
+          description: 'Please select a release project',
+          visibleItemCount: 10,
+          type: 'PT_RADIO',
+          groovyScript: '''
+              ProjectName= ['bash','-c',"curl -s http://172.31.24.30:8888/chfs/shared/fat-s/node/app-info.txt | /usr/bin/jq -r '.info' | /usr/bin/jq -r 'keys[]' "].execute().text.readLines()
+              return ProjectName
+          '''
+      )
+      extendedChoice(
+          name: 'DeploySiteId',
+          description: 'Please select a publishing site',
+          type: 'PT_RADIO',
+          visibleItemCount: 15,
+          groovyScript: '''
+              DeploySiteId= ['bash','-c',"curl -H 'Accept-Encoding: gzip' -s http://172.31.24.30:8888/chfs/shared/fat-s/node/siteID.txt" ].execute().text.readLines()
+              return DeploySiteId
+          '''
+      )
+
+    }
+
+    options {
+        timestamps() // 日志会有时间
+        // skipDefaultCheckout() // 删除隐式checkout scm语句
+        // disableConcurrentBuilds() // 禁止并行
+        timeout(time: 1, unit: 'HOURS') // 流水线超时设置1h
+    }
+
+    environment {
+        // 全局变量
+        imageTag = sh returnStdout: true, script: "date +%Y%m%d%H%M%S-${k8sNamespace}"
+        harborUrl = 'skg.harbor.bjshxg.com/skg'
+        harbor = 'skg.harbor.bjshxg.com'
+        harborUser = 'admin'
+        harborPass = 'harbor123456'
+        appinfoUrl = 'http://172.31.170.18:8888/chfs/shared/fat-s/node/app-info.txt'
+        chfsUrl = 'http://172.31.170.18:8888/chfs/shared/fat-s/node'
+        htlmdir = sh returnStdout: true, script: "echo -n ${str2}"
+        siteID = sh returnStdout: true, script: "echo -n ${str2}"
+    }
+
+
+    // 流水线的阶段
+    stages{
+        // 阶段1 get info
+        stage("get info"){
+            steps{
+                script{
+                    Console("env ProjectName", env.ProjectName)
+                    Console("env Input", env.Input)
+                    Console("env DeploySiteId", env.DeploySiteId)
+                    Console("获取构建信息", "")
+                    if (env.ProjectName) {
+                      // manager.addShortText("${ProjectName}")
+                    } else {
+                      PrintMes("操作有误,请输入ProjectName", "red")
+                      break
+                    }
+                    if (env.Input) {
+                      // manager.addShortText("${Input}")
+                    } else {
+                      PrintMes("操作有误,请输入branch or TAG", "red")
+                      break
+                    }
+                    if (env.DeploySiteId) {
+                      // manager.addShortText("${DeploySiteId}")
+                    } else {
+                      PrintMes("操作有误,请输入DeploySiteId", "red")
+                      break
+                    }
+                    Console("appinfoUrl",appinfoUrl)
+                    sh '''
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head" > app.info
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].git" >> app.info
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].${siteID}_build" >> app.info
+                    '''
+                }
+            }
+        }
+
+
+        // 阶段2 获取代码
+        stage("获取代码"){
+            steps{
+                script{
+                    PrintMes("获取代码", "green")
+                    gitUrl = sh returnStdout: true, script: "sed -n \'2p\' app.info"
+                    // gitUrl = "http://skt.abcmoreonline.com:8088/a/kk-front-end/general-control-management"
+                    println("${gitUrl}")
+                    PrintMes(gitUrl, "green")
+                    if ("${GIT}" == "TAG") {
+                      if (env.Input) {
+                          checkout([$class: 'GitSCM', branches: [[name: "${Input}"]],
+                                    doGenerateSubmoduleConfigurations: false, extensions: [],
+                                    submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-username-psw', url: "${gitUrl}"]]])
+                      } else {
+                          PrintMes("错误的操作,请输入TAG名称", "red")
+                          break
+                      }
+                    } else {
+                      if (env.Input) {
+                          checkout([$class: 'GitSCM', branches: [[name: "${Input}"]],
+                                    doGenerateSubmoduleConfigurations: false, extensions: [],
+                                    submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-username-psw', url: "${gitUrl}"]]])
+                      } else {
+                          PrintMes("错误的操作,请输入分支名称", "red")
+                          break
+                      }
+                    }
+                }
+            }
+        }
+
+
+
+        // 阶段3 Build
+        stage("编译打包"){
+            steps{
+                script{
+                    PrintMes("执行打包", "green")
+                    sh '''
+                      git rev-parse HEAD >commitID
+                      /usr/bin/rm -rf .git
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head" > app.info
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].git" >> app.info
+                      curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].${siteID}_build" >> app.info
+                      npmType=`sed -n \'3p\' app.info`
+
+                      if [ $node_version == "10.17.0" ];then
+                        date  
+                      elif [ $node_version == "12.22.8" ];then
+                        date
+                      elif [ $node_version == "14.18.2" ];then
+                        date
+                      else
+                        date
+                      fi
+
+                      if [ $buildInit1 == "yes" ];then
+                        rm -rf package-lock.json
+                      else
+                        date
+                      fi
+
+                      if [ $buildInit2 == "yes" ];then
+                        rm -rf node_modules
+                      else
+                        date
+                      fi
+
+                      if [ $npm_cache == "yes" ];then
+                        npm cache clean --force
+                      else
+                        date
+                      fi
+                      
+                      export http_proxy=http://172.31.170.2:13080;
+                      export https_proxy=http://172.31.170.2:13080;
+                      if [ $npm_install == "yes" ];then
+                        npm config set registry http://npm.bjshxg.com
+                      elif [ $npm_install == "force" ];then
+                        npm config set registry http://npm.bjshxg.com
+                      else
+                        date
+                      fi
+                      node -v
+                      npm -v
+                      npm i
+                    '''
+                }
+            }
+        }
+
+
+        // 阶段6 打包镜像
+        stage("打包镜像"){
+            steps{
+                script{
+                    PrintMes("打包镜像", "green")
+                    sh '''
+                      curl ${chfsUrl}/dockerfile.sh >dockerfile.sh
+                      curl ${chfsUrl}/nginx.conf.txt >nginx.conf
+                      if [ $ProjectName == "general_control_management" ];then
+                        curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head" >app.info
+                      elif [ $ProjectName == "finance_management" ];then
+                        curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head" >app.info
+                      elif [ $ProjectName == "kk-agenth5-download" ];then
+                        curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head" >app.info
+                      else
+                        head=`curl -s ${appinfoUrl}| /usr/bin/jq -r ".info.${ProjectName}[0].head"`
+                        echo "${head}-${siteID}" >app.info
+                      fi
+                      app=`sed -n \'1p\' app.info`
+                      sed -i  "s|appName|$app|g" nginx.conf
+                      /usr/bin/sh dockerfile.sh
+                      docker build -t ${harborUrl}/${app}:${imageTag} .
+                    '''
+                }
+            }
+        }
+
+
+
+        // 阶段7 上传镜像
+        stage("上传镜像"){
+            steps{
+                script{
+                    PrintMes("上传镜像", "green")
+                    sh '''
+                      app=`sed -n \'1p\' app.info`
+                      docker login --username=${harborUser} --password=${harborPass} ${harbor}
+                      docker push ${harborUrl}/${app}:${imageTag}
+                      sleep 1
+                      docker rmi ${harborUrl}/${app}:${imageTag}
+                    '''
+                }
+            }
+        }
+
+        // 阶段8 发布
+        stage("发布"){
+            steps{
+                script{
+                    PrintMes("发布", "green")
+                    sh '''
+                      curl ${chfsUrl}/deployment.yaml >deployment.yaml
+
+                      imageTag=`echo -n ${imageTag}`
+                      k8sNamespace=`echo -n ${k8sNamespace}`
+                      commitID=`sed -n \'1p\' commitID`
+
+                      app=`sed -n \'1p\' app.info`
+
+                      sed -i  "s|appName|$app|g" deployment.yaml
+                      sed -i  "s|TAG|$imageTag|g" deployment.yaml
+                      sed -i  "s|VERSION|$commitID|g" deployment.yaml
+
+                      kubectl   apply -f  deployment.yaml  -n dev
+                      port=`kubectl  get  svc  -n dev |grep -w $app |awk -F '80:' '{print $2}'|awk -F '/TCP' '{print $1}'`
+                      echo "$app http://172.31.24.32:${port}"
+
+                    '''
+                }
+            }
+        }
+
+    }
+
+
+    // 阶段8 构建结束后做的事情
+    post {
+        always{
+          script{
+            PrintMes("获取邮件信息", "green")
+            dir("${workspace}@tmp") {
+              sh 'pwd'
+              deleteDir()
+            }
+          }
+        }
+
+        success{
+          script{
+            PrintMes("流水线构建成功", "green")
+          }
+        }
+
+        failure{
+          script{
+            PrintMes("流水线构建失败", "red")
+          }
+        }
+
+        aborted{
+          script{
+            PrintMes("流水线构建取消", "red")
+          }
+        }
+    }
+}
