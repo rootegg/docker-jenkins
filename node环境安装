@@ -1,0 +1,41 @@
+官方安装包下载：https://nodejs.org/en/download/releases/
+
+1.安装wget工具
+yum install -y wget
+
+2.下载node二进制安装包
+
+cd /usr/local
+
+wget https://nodejs.org/download/release/v15.10.0/node-v15.10.0-linux-x64.tar.gz
+
+3.解压
+tar -zxf node-v15.10.0-linux-x64.tar.gz
+
+4.创建软连接
+ln -s node-v15.10.0-linux-x64 node
+
+5.安装vim文件编辑器
+
+yum install -y vim
+
+6.配置系统环境变量
+
+vim /etc/profile
+export NODE_HOME=/usr/local/node/
+export PATH=$NODE_HOME/bin:$PATH
+
+source /etc/profile
+
+7.查看node与npm版本
+
+[root@581b46024b79 local]# npm -v
+7.5.3
+[root@581b46024b79 local]# node -v
+v15.10.0
+
+
+
+课外知识：
+
+yum得安装方式参考：https://github.com/nodesource/distributions
