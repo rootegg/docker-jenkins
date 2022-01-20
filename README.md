@@ -96,7 +96,7 @@ sudo docker run --detach \
   --volume $GITLAB_HOME/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
   ```
-> 2、获取root初始密码
+> 2、获取root初始密码，这里获取的密码如果不能登录gitlab，直接用第三步重置root密码
 
 注意：The password file will be automatically deleted in the first reconfigure run after 24 hours.
 ```code
@@ -105,6 +105,7 @@ sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 
 > 3、reset password
 ```code
+sudo docker exec -it gitlab bash
 sudo gitlab-rake "gitlab:password:reset"
 ```
 
