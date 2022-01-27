@@ -143,6 +143,12 @@ curl $(docker port www_ngrok 4040)/api/tunnels
 ```
 ![image](https://user-images.githubusercontent.com/82021554/151295865-91447928-fb5f-4746-874d-7aee8f7944c6.png)
 
+> token只能运行一个市里，报错就换可用authtoken
+```code
+24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
+24HJkjwss1uvgmvSvXRMSFwsofF_55AaiQuiYWdeTnCFgzYji
+```
+
 ## 第五步：sonar
 ```code
 参考地址 https://www.jianshu.com/p/e0883f347901
