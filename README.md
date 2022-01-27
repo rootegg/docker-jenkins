@@ -121,6 +121,24 @@ sudo docker run --restart always --name nginx -p 80:80 -v /home/nginx/www:/usr/s
 挂载到/home/nginx/www目录的目的是，后面jenkins发布dist文件用ssh直接推到这个目录就行了
 访问 http://192.168.162.129/ 可以看到 Welcome to nginx!
 
+## 可选：安装ngrok做内网穿透
+
+> 拉取 wernight/ngrok
+```code
+docker pull wernight/ngrok
+```
+
+> 后台运行ngrok指向ngxin 80端口，authtoken 要先去 https://dashboard.ngrok.com/get-started/setup 官网注册获取
+```code
+docker run -d -p 4040 --name www_ngrok --link nginx wernight/ngrok ngrok http nginx:80 --authtoken 24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
+```
+
+> 显示穿透域名，外网便可直接访问
+```code
+curl $(docker port www_ngrok 4040)/api/tunnels
+```
+![image](https://user-images.githubusercontent.com/82021554/151295865-91447928-fb5f-4746-874d-7aee8f7944c6.png)
+
 ## 第五步：sonar
 ```code
 参考地址 https://www.jianshu.com/p/e0883f347901
