@@ -143,10 +143,17 @@ curl $(docker port www_ngrok 4040)/api/tunnels
 ```
 ![image](https://user-images.githubusercontent.com/82021554/151295865-91447928-fb5f-4746-874d-7aee8f7944c6.png)
 
-> token只能运行一个市里，报错就换可用authtoken
+> 可用authtoken
 ```code
 24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
 24HJkjwss1uvgmvSvXRMSFwsofF_55AaiQuiYWdeTnCFgzYji
+```
+
+> 第三步报错 curl: (3) Bad URL, colon is first character
+```code
+docker port www_ngrok 4040       
+// 用上句显示的端口49167
+curl http://localhost:49167/api/tunnels
 ```
 
 ## 第五步：sonar
