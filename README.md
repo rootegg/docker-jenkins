@@ -143,7 +143,7 @@ curl $(docker port www_ngrok 4040)/api/tunnels
 ```
 ![image](https://user-images.githubusercontent.com/82021554/151295865-91447928-fb5f-4746-874d-7aee8f7944c6.png)
 
-> 可用authtoken
+> 第三步报错  Error: No public port '4040/tcp' published for www_ngrok，则换可用authtoken
 ```code
 24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
 24HJkjwss1uvgmvSvXRMSFwsofF_55AaiQuiYWdeTnCFgzYji
