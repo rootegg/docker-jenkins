@@ -50,11 +50,15 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 ```code
 安装过程中，会询问是否继续安装某些工具，输入y回车就行
 ```
-> 3、Start Docker
+> 3、设置开机启动
+```code
+sudo systemctl enable docker
+```
+> 4、Start Docker
 ```code
 sudo systemctl start docker
 ```
-> 4、Test
+> 5、Test
 ```code
 sudo docker run hello-world
 ```
