@@ -155,6 +155,8 @@ docker port www_ngrok 4040
 // 用上句显示的端口49167
 curl http://localhost:49167/api/tunnels
 ```
+![image](https://user-images.githubusercontent.com/82021554/151350801-a0a9d55b-130f-485a-b420-6297d7b5792a.png)
+
 
 ## 第五步：sonar
 ```code
