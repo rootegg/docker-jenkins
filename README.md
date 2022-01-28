@@ -113,6 +113,11 @@ sudo docker exec -it gitlab bash
 sudo gitlab-rake "gitlab:password:reset"
 ```
 
+> 4、如果gitlab启动不了
+```code
+可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
+```
+
 ## 第四步：nginx
 ```code
 参考地址 https://www.runoob.com/docker/docker-install-nginx.html
