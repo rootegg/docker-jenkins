@@ -107,6 +107,11 @@ sudo docker run --detach \
 sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
 
+> web界面首次修改root密码
+```code
+右上角 -> Edit profile -> password
+```
+
 > 3、reset password
 ```code
 sudo docker exec -it gitlab bash
