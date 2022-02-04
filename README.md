@@ -123,6 +123,13 @@ sudo gitlab-rake "gitlab:password:reset"
 可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
 ```
 
+> 5、修改gitllab显示的clone地址，不然是一串数字乱码
+```code
+docker exec -it -u root gitlab bash
+vi /etc/gitlab/gitlab.rb
+external_url 'http://192.168.1.10'
+```
+
 ## 第四步：nginx
 ```code
 参考地址 https://www.runoob.com/docker/docker-install-nginx.html
