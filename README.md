@@ -126,7 +126,7 @@ sudo gitlab-rake "gitlab:password:reset"
 > 5、修改gitllab显示的clone地址，不然是一串数字乱码
 ```code
 docker exec -it -u root gitlab bash
-vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
 修改地址 host: 192.168.1.10
 gitlab-ctl restart
 ```
