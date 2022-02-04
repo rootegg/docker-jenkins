@@ -126,9 +126,9 @@ sudo gitlab-rake "gitlab:password:reset"
 > 5、修改gitllab显示的clone地址，不然是一串数字乱码
 ```code
 docker exec -it -u root gitlab bash
-vi /etc/gitlab/gitlab.rb
-修改地址 external_url 'http://192.168.1.10'
-docker restart gitlab
+vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml
+修改地址 host: 192.168.1.10
+gitlab-ctl restart
 ```
 
 ## 第四步：nginx
