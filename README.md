@@ -127,7 +127,8 @@ sudo gitlab-rake "gitlab:password:reset"
 ```code
 docker exec -it -u root gitlab bash
 vi /etc/gitlab/gitlab.rb
-external_url 'http://192.168.1.10'
+修改地址 external_url 'http://192.168.1.10'
+docker restart gitlab
 ```
 
 ## 第四步：nginx
