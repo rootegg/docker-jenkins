@@ -92,7 +92,7 @@ docker run -d --restart always -p 10240:8080 -p 10241:50000 -v /var/jenkins_home
 > 1、Install GitLab using Docker Engine 社区版
 ```code
 sudo docker run --detach \
-  --publish 44301:443 --publish 8001:80 --publish 2201:22 \
+  --publish 44301:443 --publish 36001:80 --publish 2201:22 \
   --name gitlab \
   --restart always \
   --volume $GITLAB_HOME/config:/etc/gitlab \
