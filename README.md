@@ -103,7 +103,7 @@ sudo docker run --detach \
   
 > 2、等等gitlab启动成功，访问地址 192.168.1.10:36001
 ```code
-docker ps可以看到STATUS是  heathing，等待变成 heathy才行，
+docker ps可以看到STATUS是  heathing: starting，等待变成 heathy才行，
 如果长时间没启动成功，或者报错，可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
 ```
 
