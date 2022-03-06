@@ -106,6 +106,7 @@ sudo docker run --detach \
 这个启动非常耗cpu，冲到90%，可能服务器卡死
 docker ps可以看到STATUS是  heathing: starting，等待变成 heathy才行，
 如果长时间没启动成功，或者报错，可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
+cpu过高问题 https://www.cnblogs.com/51core/articles/15305816.html
 ```
 
 > 3、获取root初始密码，这里获取的密码如果不能登录gitlab，直接用第三步重置root密码
