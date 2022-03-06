@@ -100,7 +100,14 @@ sudo docker run --detach \
   --volume $GITLAB_HOME/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
   ```
-> 2、获取root初始密码，这里获取的密码如果不能登录gitlab，直接用第三步重置root密码
+  
+> 2、等等gitlab启动成功，访问地址 192.168.1.10:36001
+```code
+docker ps可以看到STATUS是  heathing，等待变成 heathy才行，
+如果长时间没启动成功，或者报错，可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
+```
+
+> 3、获取root初始密码，这里获取的密码如果不能登录gitlab，直接用第三步重置root密码
 
 注意：The password file will be automatically deleted in the first reconfigure run after 24 hours.
 ```code
@@ -112,15 +119,10 @@ sudo docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 右上角 -> Edit profile -> password
 ```
 
-> 3、reset password
+> 4、reset password
 ```code
 sudo docker exec -it gitlab bash
 sudo gitlab-rake "gitlab:password:reset"
-```
-
-> 4、如果gitlab启动不了
-```code
-可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
 ```
 
 > 5、修改gitllab显示的clone地址，不然是一串数字乱码
