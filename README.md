@@ -222,7 +222,7 @@ sudo docker run -d --restart always -p 10240:8080 -p 10241:50000 -v /var/jenkins
 将url改为 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 ```
 > 3、获取初始密码
-访问网站 http://192.168.162.129:10240/
+访问网站 http://192.168.162.129:10240/，云平台注意打开防火墙端口10240
 ```code
 cd /var/jenkins_mount/secrets/
 cat initialAdminPassword
