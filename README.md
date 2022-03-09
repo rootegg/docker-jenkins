@@ -107,6 +107,12 @@ sudo docker run --detach \
 docker ps可以看到STATUS是  heathing: starting，等待变成 heathy才行，
 如果长时间没启动成功，或者报错，可能是这三个volume 目录映射没有权限，可去掉这三个volume ，学会查看日志  docker logs gitlab
 cpu过高问题 https://www.cnblogs.com/51core/articles/15305816.html
+
+gitlab非常耗内存，如果少于700M可用内存，看是否要清楚缓存内存占用
+free -m 命令查询当前内存使用情况，单位M
+echo 1 > /proc/sys/vm/drop_caches :表示清除pagecache。
+echo 2 > /proc/sys/vm/drop_caches :表示清除回收slab分配器中的对象（包括目录项缓存和inode缓存）。slab分配器是内核中管理内存的一种机制，其中很多缓存数据实现都是用的pagecache。
+echo 3 > /proc/sys/vm/drop_caches :表示清除pagecache和slab分配器中的缓存对象。
 ```
 
 > 3、获取root初始密码，这里获取的密码如果不能登录gitlab，直接用第三步重置root密码
