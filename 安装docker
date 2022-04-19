@@ -27,6 +27,10 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 #安装 docker-ce
 yum install docker-ce-20.10.6 docker-ce-cli-20.10.6 containerd.io -y
 
+
 #启动 docker 服务
 systemctl start docker && systemctl enable docker
-systemctl st彽?f)
+systemctl status docker
+
+#查看Docker版本信息
+docker version
