@@ -46,7 +46,7 @@ Another app is currently holding the yum lock; waiting for it to exit...
 ```code
 记一次执行yum命令报错：Could not retrieve mirrorlist http://mirrorlist.centos.org/
 
-DNS配置增加
+DNS配置增加，要重启reboot
 # vi /etc/resolv.conf
 nameserver 114.114.114.114
 nameserver 114.114.114.115
