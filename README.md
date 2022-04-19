@@ -42,6 +42,15 @@ Another app is currently holding the yum lock; waiting for it to exit...
 
 #rm -f /var/run/yum.pid
 ```
+
+```code
+记一次执行yum命令报错：Could not retrieve mirrorlist http://mirrorlist.centos.org/
+
+DNS配置增加
+# vi /etc/resolv.conf
+nameserver 114.114.114.114
+nameserver 114.114.114.115
+```
 > 2、Install Docker Engine
 ```code
 sudo yum install docker-ce docker-ce-cli containerd.io
