@@ -13,6 +13,47 @@
 https://mirrors.tuna.tsinghua.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso
 ```
 
+> 设置网络，最小化Centos7安装后一般没有开启网络
+```code
+1)查看网卡
+[root@localhost ~]# ip a
+2)修改网卡参数
+ONBOOT=no改成yes
+[root@localhost ~]# sed -i 's|ONBOOT=no|ONBOOT=yes|g' /etc/sysconfig/network-scripts/ifcfg-enp0s3
+3)重启网卡服务
+[root@localhost ~]# systemctl restart network
+
+2丶开启自动获取动态IP地址
+1)修改网卡参数
+[root@localhost ~]# vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static #改成静态模式
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=enp0s3
+UUID=dcbf623d-ea0d-41e3-8062-f147336c0f04
+DEVICE=enp0s3
+ONBOOT=yes #开启网卡
+IPADDR=192.168.3.8 #静态IP
+GATEWAY=192.168.3.1 #网关IP
+NETMASK=255.255.255.0 #子网掩码
+DNS1=114.114.114.114 #首先DNS地址
+```
+
+> Centos7软件的镜像设置清华源
+```code
+sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-*.repo
+```
 ## 第二步：docker
 
 ### 一、docker 安装
