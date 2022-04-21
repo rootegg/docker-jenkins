@@ -74,8 +74,8 @@ nameserver 114.114.114.115
 ```
 > 1、Set up the repository
 ```code
-sudo yum install -y yum-utils
-sudo yum-config-manager \
+yum install -y yum-utils
+yum-config-manager \
     --add-repo \
     http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
@@ -106,7 +106,7 @@ nameserver 114.114.114.115
 ```
 > 2、Install Docker Engine
 ```code
-sudo yum install docker-ce docker-ce-cli containerd.io
+yum install docker-ce docker-ce-cli containerd.io
 ```
 > 遇到问题
 ```code
@@ -114,15 +114,15 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 ```
 > 3、设置开机启动
 ```code
-sudo systemctl enable docker
+systemctl enable docker
 ```
 > 4、Start Docker
 ```code
-sudo systemctl start docker
+systemctl start docker
 ```
 > 5、Test
 ```code
-sudo docker run hello-world
+docker run hello-world
 ```
 
 ### 二、docker 语法介绍
