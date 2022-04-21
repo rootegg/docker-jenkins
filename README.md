@@ -58,6 +58,14 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 最后，更新软件包缓存
 yum makecache
 ```
+
+> 设置DNS
+```code
+DNS配置增加，要重启reboot
+# vi /etc/resolv.conf
+nameserver 114.114.114.114
+nameserver 114.114.114.115
+```
 ## 第二步：docker
 
 ### 一、docker 安装
