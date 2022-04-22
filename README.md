@@ -124,6 +124,12 @@ systemctl start docker
 ```code
 docker run hello-world
 ```
+>6、harbor 不能用http解决，192.168.1.100:5000是Harbor服务器地址
+```code
+在客户机”/etc/docker/“目录下，创建”daemon.json“文件。在文件中写入：
+
+{ "insecure-registries":["192.168.1.100:5000"] }
+```
 
 ### 二、docker 语法介绍
 ```code
