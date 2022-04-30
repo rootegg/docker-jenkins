@@ -312,9 +312,9 @@ sonar.sourceEncoding=UTF-8
 参考地址 https://www.cnblogs.com/fuzongle/p/12834080.html
 ```
 ```code
-sudo mkdir -p /var/jenkins_mount
-sudo chmod 777 /var/jenkins_mount
-sudo docker run -d --restart always -p 10240:8080 -p 10241:50000 -v /var/jenkins_mount:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
+sudo mkdir -p /var/jenkins_home
+sudo chmod 777 /var/jenkins_home
+sudo docker run -d --restart always -p 10240:8080 -p 10241:50000 -v /var/jenkins_home:/var/jenkins_home -v /etc/localtime:/etc/localtime --name jenkins jenkins/jenkins
 ```
 > 2、安装镜像加速
 ```code
