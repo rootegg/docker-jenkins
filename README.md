@@ -53,9 +53,9 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
          -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
          -i.bak \
          /etc/yum.repos.d/CentOS-*.repo
-         
-         
+```
 最后，更新软件包缓存
+```code
 yum makecache
 ```
 
