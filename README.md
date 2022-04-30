@@ -74,10 +74,15 @@ nameserver 114.114.114.115
 ```
 > 1、Set up the repository
 ```code
-yum install -y yum-utils
-yum-config-manager \
-    --add-repo \
-    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+#关闭 selinux
+setenforce 0
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+
+#安装基础软件包
+yum install -y wget net-tools nfs-utils lrzsz gcc gcc-c++ make cmake libxml2-devel openssl-devel curl curl-devel unzip sudo ntp libaio-devel wget vim ncurses-devel autoconf automake zlib-devel python-devel epel-release openssh-server socat ipvsadm conntrack yum-utils
+
+#配置 docker-ce 国内 yum 源（阿里云）
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 > 遇到问题
 ```code
@@ -104,8 +109,13 @@ DNS配置增加，要重启reboot
 nameserver 114.114.114.114
 nameserver 114.114.114.115
 ```
+
 > 2、Install Docker Engine
+
 ```code
+#安装 docker 依赖包
+yum install -y yum-utils device-mapper-persistent-data lvm2
+#安装 docker-ce
 yum install docker-ce docker-ce-cli containerd.io
 ```
 > 遇到问题
