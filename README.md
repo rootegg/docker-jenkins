@@ -441,3 +441,20 @@ service network restart
 
 
 ```
+# 追加内容
+## 第八步：搭建Harbor
+
+下载docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+查看下载好的包
+ls /usr/local/bin/
+
+修改执行权限
+chmod +x /usr/local/bin/docker-compose
+
+软连接映射到/usr/bin/
+ln -sf  /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+验证
+which docker-compose
