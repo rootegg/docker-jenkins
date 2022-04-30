@@ -489,6 +489,9 @@ data_volume: /data/app/harbor-data  #harbor 持久化数据
 # certificate: /your/certificate/path
 # private_key: /your/private/key/p
 ```
+运行./install.sh安装脚本
+./install.sh
+
 ###　配置harbor开机自启动
 ```code
 1)编写启动脚本
@@ -501,5 +504,6 @@ docker-compose stop && docker-compose start
 2)赋予执行权限
 chmod +x  /data/app/harbor/startall.sh
 3)把启动脚本加到系统启动之后最后一个执行的文件
-echo "/bin/bash /data/app/harbor/startall.sh" >>/etc/rc?
+echo "/bin/bash /data/app/harbor/startall.sh" >>/etc/rc.d/rc.local
+chmod +x /etc/rc.d/rc.local
 ```
