@@ -74,6 +74,18 @@ nameserver 114.114.114.115
 ```
 > 1、Set up the repository
 ```code
+#配置主机名：
+hostnamectl set-hostname zy-nph-skg-dev-k8s-master01  && bash
+
+#关闭防火墙
+systemctl stop firewalld && systemctl disable firewalld
+
+#安装 iptables
+yum install iptables-services -y
+
+#禁用 iptables
+service iptables stop && systemctl disable iptables
+
 #关闭 selinux
 setenforce 0
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
