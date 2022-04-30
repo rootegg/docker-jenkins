@@ -499,7 +499,7 @@ cp harbor.yml.tmpl harbor.yml
 
 vim harbor.yml
 hostname:   harbor01.k8s.com   #主机IP/或者域名
-harbor_admin_password: harbor123456   #harbor UI界面登陆密码
+harbor_admin_password: Harbor12345   #harbor UI界面admin登陆密码
 data_volume: /data/app/harbor-data  #harbor 持久化数据
 
 #关闭https（把以下的行都注释掉12-18行）
