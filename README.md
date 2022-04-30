@@ -445,6 +445,8 @@ service network restart
 ## 第八步：搭建Harbor
 
 ### 安装docker-compose
+
+```code
 下载docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
@@ -459,8 +461,11 @@ ln -sf  /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 验证
 which docker-compose
+```
 
 ### 安装harbor
+
+```code
 yum install -y wget
 wget https://github.com/goharbor/harbor/releases/download/v2.5.0/harbor-online-installer-v2.5.0.tgz
 
@@ -483,8 +488,9 @@ data_volume: /data/app/harbor-data  #harbor 持久化数据
 # # The path of cert and key files for nginx
 # certificate: /your/certificate/path
 # private_key: /your/private/key/p
-
+```
 ###　配置harbor开机自启动
+```code
 1)编写启动脚本
 vim /data/app/harbor/startall.sh
 #!/bin/bash
@@ -496,3 +502,4 @@ docker-compose stop && docker-compose start
 chmod +x  /data/app/harbor/startall.sh
 3)把启动脚本加到系统启动之后最后一个执行的文件
 echo "/bin/bash /data/app/harbor/startall.sh" >>/etc/rc?
+```
