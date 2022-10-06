@@ -252,7 +252,11 @@ docker pull wernight/ngrok
 
 > 后台运行ngrok指向ngxin 80端口，authtoken 要先去 https://dashboard.ngrok.com/get-started/setup 官网注册获取
 ```code
+如果代理到nginx镜像
 docker run -d -p 4040 --name www_ngrok --link nginx wernight/ngrok ngrok http nginx:80 --authtoken 24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
+
+如果代理到服务端口，公网ip:端口
+docker run -it -d -p 4040 --name www_ngrok ngrok/ngrok http 175.178.1.249:3000 --authtoken 24GP7iKlsqGYDwh0QjjqcoviMws_6SQujd8xWkhB2oSVQd2Yk
 ```
 
 > 显示穿透域名，外网便可直接访问
